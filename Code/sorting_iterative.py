@@ -1,5 +1,7 @@
 #!python
 
+"""This file's sorting algorithms generally have quadratic time complexity"""
+
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
     TODO: Running time: ??? Why and under what conditions?
