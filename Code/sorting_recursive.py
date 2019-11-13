@@ -75,6 +75,8 @@ def partition(items, low, high):
     # TODO: Move pivot item into final position [p] and return index p
 
 
+
+
 def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
@@ -82,6 +84,34 @@ def quick_sort(items, low=None, high=None):
     TODO: Worst case running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Check if high and low range bounds have default values (not given)
+    if low is None:
+        low = 0
+    if high is None:
+        high = len(items)-1
+
     # TODO: Check if list or range is so small it's already sorted (base case)
+    # if len(items) < 2: #rather than 'len(items)' it should be based on low and high
+    #     return items
+    if ((high-low)+1) < 2: #because in line 88, it's len(items)-1, so if a list of index 0 and 1 is of len 2
+        return
+    
     # TODO: Partition items in-place around a pivot and get index of pivot
+    pivot = partition(items, low, high)
+
     # TODO: Sort each sublist range by recursively calling quick sort
+    left = quick_sort(items, low, pivot-1)
+    right = quick_sort(items, pivot+1, high)
+
+   # divide:
+       # select a pivot to compare items to
+       # partition all items into 2 groups
+           # items <= pivot
+           # items > pivot
+       # [5, 2, 8, 7, 1, 9, 3] pivot: 5
+           # [2, 1, 3] and [8, 7, 9]
+   # conquer:
+       # sort the two groups with quick sort recursively
+   # combine:
+       # concatenate lesser group, pivot, greater group
+       # list1 + pivot + list2
+       # [1, 2, 3] + [5] + [7, 8, 9]
