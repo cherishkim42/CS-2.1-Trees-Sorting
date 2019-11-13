@@ -58,7 +58,7 @@ def merge_sort(items):
     right = merge_sort(items[center:])
     merged_items = merge(left, right)
 
-    items[:] = merged_items #mutates items to contain each and every indexed item in merged_items - as opposed to 'items = merged_items', which would simply assign meged_items to the items VARIABLE without actually mutating 'items' itself
+    items[:] = merged_items #mutates items to contain each and every indexed item in merged_items - as opposed to 'items = merged_items', which would simply assign merged_items to the items VARIABLE without actually altering 'items' itself
     return items
 
 def partition(items, low, high):
