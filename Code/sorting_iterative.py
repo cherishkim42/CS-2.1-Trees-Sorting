@@ -1,15 +1,11 @@
 #!python
 
-"""This file's sorting algorithms generally have quadratic time complexity"""
+# This file's sorting algorithms generally have quadratic time complexity
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check that all adjacent items are in order, return early if so
-
-    if len(items) <= 1: #empty array OR array with 1 item = already sorted
-        return True
+    Running time: O(n) where n = length of 'items' b/c you gotta check em all
+    Memory usage: O(1). This function returns a boolean and stores nothing"""
     
     for i in range(len(items)-1):
         if items[i] > items[i+1]:
@@ -19,48 +15,48 @@ def is_sorted(items):
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
+    Running time: [BEST] O(n) if already sorted; [WORST & common] O(n^2) unsorted;
+    Memory usage: O(1). Param list changed, no new list; no new memory needs allocation"""
     
     while is_sorted(items) is False:
         for i in range(len(items)-1):
             if items[i] > items[i+1]:
                 items[i], items[i+1] = items[i+1], items[i]
+    return items
 
-def selection_sort(items):
+def selection_sort(items): #Anisha suggests no while loop
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+    Running time: O(n^2) due to 2 nested for loops
+    Memory usage: O(1). Param list changed, no new list; no new memory needs allocation"""
 
-    while is_sorted(items) is False:
-        for i in range(len(items)):
-            current_min = min(items[i:])
-            index_min = items.index(current_min)
-            items[i], items[index_min] = items[index_min], items[i]
+    for i in range(len(items)):
+        min_index = i
+        for j in range(i, len(items)):
+            if items[j] < items[min_index]:
+                min_index = j
+        items[min_index], items[i] = items[i], items[min_index]
+    return items
 
-def insertion_sort(items):
+def insertion_sort(items): #Anisha suggests no while loop
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
+    Running time: [BEST] O(n), only 1 unsorted item needs to be moved. [WORST] O(n^2) due to 2 nested for loops
+    Memory usage: O(1). Param list changed, no new list; no new memory needs allocation"""
 
-    while is_sorted(items) is False:
-        for i in range(len(items)):
-            index = i
-            current_element = items[i]
-            while index > 0 and items[current_element - 1] > current_element:
-                items[index] = items[index - 1]
-                index -= 1
-            items[index] = current_element
+    for i in range(len(items)):
+        sort_me = items[i]
+        next_index = i - 1
+        if items[next_index] > sort_me and next_index >= 0:
+            items[next_index + 1] = items[next_index]
+            next_index -= 1
+        items[next_index + 1] = sort_me
+    return items
+
+ 
+
+
+
 
 
 

@@ -15,7 +15,8 @@ class PrefixTree:
     Each string is stored as a sequence of characters along a path from the
     tree's root node to a terminal node that marks the end of the string."""
 
-    # Constant for the start character stored in the prefix tree's root node
+    # Constant for the start character stored in the prefix tree's ROOT NODE
+
     START_CHARACTER = ''
 
     def __init__(self, strings=None):
@@ -36,6 +37,7 @@ class PrefixTree:
     def is_empty(self):
         """Return True if this prefix tree is empty (contains no strings)."""
         return self.root.num_children() == 0
+        # return self.size == 0 #maybe?
 
     def contains(self, string):
         """Return True if this prefix tree contains the given string."""
